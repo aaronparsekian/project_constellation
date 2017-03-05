@@ -23,7 +23,7 @@ Blackhole firstBlackhole;
 PVector target;
 
 float counter = 0;
-float counterStep = 0.1;
+float counterStep = 0.001;
 
 //setup() runs first, at the beginning
 void setup() {
