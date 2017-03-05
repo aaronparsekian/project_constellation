@@ -1,6 +1,6 @@
-//class definition for Star
-class Star {
-
+//Blackhole class definition
+//Blackholeattracts Star particles
+class Blackhole {
   //location
   PVector location;
 
@@ -10,8 +10,8 @@ class Star {
   //acceleration
   PVector acceleration;
 
-  //size of radius
-  float radius;
+  //mass of the blackhole
+  float mass;
 
   //maximum speed
   float maxSpeed;
@@ -22,17 +22,17 @@ class Star {
 
   //constructor function for Star
   //nameOfTheClass(arguments)
-  Star(float x, float y) {
+  Blackhole(float x, float y) {
     //starts with no acceleration
     acceleration = new PVector (0, 0);
     //starts with no velocity
     velocity = new PVector(0, 0);
     //starts at the location specified by constructor arguments
     location = new PVector(x, y);
-    //initial size
-    radius = 1.0;
+    //initial mass
+    mass = 1.0;
     //maximum speed
-    maxSpeed = 20;
+    maxSpeed = 4;
     //maximum force
     maxForce = 0.1;
   }
@@ -50,6 +50,11 @@ class Star {
     velocity.limit(maxSpeed);
 
     //update acceleration(??)
+  }
+  
+  void move(PVector newPosition) {
+    location.x = newPosition.x;
+    location.y = newPosition.y;
   }
 
 
@@ -77,16 +82,30 @@ class Star {
     applyForce(steer);
   }
 
-  //function for displaying Star on the canvas
+  //function for placing Blackhole on the canvas
   void display() {
     //store current drawing configuration
     pushMatrix();
-    //translate to the location of the Star
-    translate(location.x,location.y);
+    //translate to the location of the BlackHole
+    translate(location.x, location.y);
     //restore previous drawing configuration
     popMatrix();
-    //put the image 
-    image(particleImg, location.x, location.y);
-    
   }
+
+  //function for checking edges and wrapping around
+  void checkEdges() {
+
+    if (location.x > width) {
+      location.x = 0;
+    } else if (location.x < 0) {
+      location.x = width;
+    }
+
+    if (location.y > height) {
+      location.y = 0;
+    } else if (location.y < 0) {
+      location.y = height;
+    }
+  }
+  
 }
