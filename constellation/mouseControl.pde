@@ -28,6 +28,6 @@ void updateMouse() {
   mouseSpeed = constrain(mouseSpeed, minSpeed, maxSpeed);
   
   //print values to the console
-  println("mouseQuantity: " + mouseQuantity + ", mouseSpeed: " + mouseSpeed);
+  //println("mouseQuantity: " + mouseQuantity + ", mouseSpeed: " + mouseSpeed);
   
 }

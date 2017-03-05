@@ -19,10 +19,9 @@ class Star {
   //limited magnitude of steering force
   float maxForce;
 
-
   //constructor function for Star
   //nameOfTheClass(arguments)
-  Star(float x, float y) {
+  Star(float x, float y, float size) {
     //starts with no acceleration
     acceleration = new PVector (0, 0);
     //starts with no velocity
@@ -30,11 +29,11 @@ class Star {
     //starts at the location specified by constructor arguments
     location = new PVector(x, y);
     //initial size
-    radius = 1.0;
+    radius = size;
     //maximum speed
-    maxSpeed = 20;
+    maxSpeed = 2;
     //maximum force
-    maxForce = 0.1;
+    maxForce = 0.01;
   }
 
   //function for updating the position of the Star
@@ -86,7 +85,7 @@ class Star {
     //restore previous drawing configuration
     popMatrix();
     //put the image 
-    image(particleImg, location.x, location.y);
+    image(particleImg, location.x, location.y, radius*100, radius*100);
     
   }
 }
