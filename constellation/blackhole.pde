@@ -4,6 +4,9 @@ class Blackhole {
   //location
   PVector location;
 
+  //initial position
+  PVector initPos;
+
   //velocity
   PVector velocity;
 
@@ -19,7 +22,6 @@ class Blackhole {
   //limited magnitude of steering force
   float maxForce;
 
-
   //constructor function for Star
   //nameOfTheClass(arguments)
   Blackhole(float x, float y) {
@@ -28,13 +30,15 @@ class Blackhole {
     //starts with no velocity
     velocity = new PVector(0, 0);
     //starts at the location specified by constructor arguments
+    initPos = new PVector(x, y);
+    //starts at the location specified by constructor arguments
     location = new PVector(x, y);
     //initial mass
     mass = 1.0;
     //maximum speed
     maxSpeed = 4;
     //maximum force
-    maxForce = 0.1;
+    maxForce = 0.01;
   }
 
   //function for updating the position of the Star
@@ -51,7 +55,7 @@ class Blackhole {
 
     //update acceleration(??)
   }
-  
+
   void move(PVector newPosition) {
     location.x = newPosition.x;
     location.y = newPosition.y;
@@ -107,5 +111,4 @@ class Blackhole {
       location.y = height;
     }
   }
-  
 }

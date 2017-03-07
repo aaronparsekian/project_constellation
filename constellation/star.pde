@@ -33,7 +33,7 @@ class Star {
     //maximum speed
     maxSpeed = 2;
     //maximum force
-    maxForce = 0.01;
+    maxForce = 1.0;
   }
 
   //function for updating the position of the Star
@@ -85,7 +85,8 @@ class Star {
     //restore previous drawing configuration
     popMatrix();
     //put the image 
-    image(particleImg, location.x, location.y, radius*100, radius*100);
-    
+    tint(100+random(155));
+    image(particleImg, location.x, location.y, radius, radius);
+    //
   }
 }
