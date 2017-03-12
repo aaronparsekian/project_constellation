@@ -1,13 +1,11 @@
-//Blackhole class definition
+//Blackhole class
 //Blackholeattracts Star particles
 class Blackhole {
-  //location
   PVector location;
 
   //initial position
   PVector initPos;
 
-  //velocity
   PVector velocity;
 
   //acceleration
@@ -22,13 +20,10 @@ class Blackhole {
   //limited magnitude of steering force
   float maxForce;
 
-  //constructor function for Star
-  //nameOfTheClass(arguments)
   Blackhole(float x, float y) {
-    //starts with no acceleration
     acceleration = new PVector (0, 0);
-    //starts with no velocity
     velocity = new PVector(0, 0);
+
     //starts at the location specified by constructor arguments
     initPos = new PVector(x, y);
     //starts at the location specified by constructor arguments
@@ -41,19 +36,17 @@ class Blackhole {
     maxForce = 0.01;
   }
 
-  //function for updating the position of the Star
+  //update position
   void update() {
-    //update velocity, add to it acceleration
+    //update velocity,add acceleration
     velocity.add(acceleration);
-    //limit it to maxSpeed
+    //limit to maxSpeed
     velocity.limit(maxSpeed);
 
-    //update location, add to it velocity
+    //update location,add velocity
     location.add(velocity);
-    //limit it to maxSpeed
+    //limit to maxSpeed
     velocity.limit(maxSpeed);
-
-    //update acceleration(??)
   }
 
   void move(PVector newPosition) {
@@ -62,17 +55,17 @@ class Blackhole {
   }
 
 
-  //function for applying force to Star
+  //apply force
   //add it to current acceleration
   void applyForce(PVector force) {
     acceleration.add(force);
   }
 
-  //function for going towards a target
+  //go to target
   void seek(PVector target) {
-    //desired velocity, first find the direction
+    //find the direction for desired velocity
     PVector desired = PVector.sub(target, location);
-    //normalize it, make it of unit length
+    //unit length 
     desired.normalize();
     //multiply it by desired length, which is the maxSpeed
     //because we want to move as fast as we can towards the target
@@ -86,7 +79,7 @@ class Blackhole {
     applyForce(steer);
   }
 
-  //function for placing Blackhole on the canvas
+  //place Blackhole on the canvas
   void display() {
     //store current drawing configuration
     pushMatrix();
