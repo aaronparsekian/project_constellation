@@ -1,22 +1,23 @@
 //constellation
-//by aaron parsekian
-//code assistance by aaron montoya-moraga
-//for the nature of code class by daniel shiffman at nyu itp
+//aaron parsekian
+//based on code from the book the nature of code by daniel shiffman 
+//big thank you to aaron montoya-moraga for code and math assistance 
+//for the nature of code class - daniel shiffman at nyu itp
 //march 2017
 //v0.1.0
 
-//global variable for storing particle image
+//particle image
 PImage particleImg;
 
 
 //array of stars
 ArrayList<Star> stars = new ArrayList<Star>();
 
-//quantity of stars
-int starsQuantity = 500;
+//how many stars
+int starsQty = 500;
 
-//quantity of blackholes
-int blackholesQuantity = 500;
+//how many blackholes
+int blackholesQty = 500;
 
 //array of blackholes
 ArrayList<Blackhole> blackholes = new ArrayList<Blackhole>();
@@ -24,48 +25,36 @@ ArrayList<Blackhole> blackholes = new ArrayList<Blackhole>();
 //maximum step for moving blackholes
 int step = 10;
 
-//setup() runs first, at the beginning
 void setup() {
-  noCursor();
-  //create canvas
-  //intended for use with projectors
-  //size(2600, 1050);
-  size(2080, 840);
-
-  //black background
+  //size(2800, 1050); //projectors
+  size(1200, 450);
   background(0);
-
-  //load particle image star.png from media folder
+  //load particle image
   particleImg = loadImage("./media/star.png");
 
-
   //initialize stars
-  for (int i = 0; i < starsQuantity; i++) {
+  for (int i = 0; i < starsQty; i++) {
     stars.add(new Star(random(width), random(height), 5*random(10)));
   }
 
   //initialize blackholes
-  for (int i = 0; i < blackholesQuantity; i++) {
+  for (int i = 0; i < blackholesQty; i++) {
     blackholes.add(new Blackhole(random(width), random(height)));
   }
 }
 
-//draw() runs on a loop after setup()]
 void draw() {
-
-  //black background
   background(0);
 
   //update blackholes positions
-  for (int i = 0; i < round(mouseQuantity*blackholesQuantity); i++) {
+  for (int i = 0; i < round(mouseQuantity*blackholesQty); i++) {
     Blackhole tempBlackhole = blackholes.get(i);
     PVector newPos = new PVector(tempBlackhole.location.x+random(-step, step), 
       tempBlackhole.location.y+random(-step, step));
     tempBlackhole.move(newPos);
-    //tempBlackhole.display();
   }
-
-  for (int i = 0; i < round(mouseQuantity*starsQuantity); i++) {
+  //update stars positions
+  for (int i = 0; i < round(mouseQuantity*starsQty); i++) {
     Star tempStar = stars.get(i);
     tempStar.update();
     Blackhole tempBlackhole = blackholes.get(i);
@@ -74,6 +63,6 @@ void draw() {
   }
 
   updateMouse();
-
+  noCursor();
   println(frameRate);
 }
